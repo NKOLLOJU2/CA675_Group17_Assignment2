@@ -1,0 +1,49 @@
+create table Books
+(
+book_id bigint primary key,
+title varchar(255),
+bestsellers_rank int,
+lang varchar(255),
+rating_avg float,
+rating_count int,
+description varchar(255),
+format_id int,
+publication_date date,
+url text,
+foreign key (format_id)  references Formats(format_id)
+);
+
+create table Author
+(
+author_id int primary key,
+author_name varchar(255) 
+);
+
+create table Categories
+(
+category_id int primary key,
+category_name varchar(255)
+);
+
+create table Formats
+(
+format_id int primary key,
+format_name varchar(255)
+);
+
+create table Book_Author
+(
+ book_id bigint,
+ author_id int ,
+ foreign key (book_id)  references Books(book_id),
+ foreign key (author_id)  references Author(author_id)
+);
+
+create table Book_Category
+(
+ book_id bigint,
+ category_id int, 
+ foreign key (book_id)  references Books(book_id),
+ foreign key (category_id)  references Categories(category_id)
+);
+

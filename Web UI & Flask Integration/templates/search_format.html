@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>BookDB - Directory &amp; Analytics</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="static/img/core-img/bookdblogo3.png">
+
+    <!-- Core Stylesheet -->
+    <link href="static/css/style.css" rel="stylesheet">
+
+    <!-- Responsive CSS -->
+    <link href="static/css/responsive/responsive.css" rel="stylesheet">
+	<style>
+        table {
+            border-collapse: collapse; background-color:rgba(67, 25, 161, 0.65);
+        }
+        table, th, td {
+            border: 1px solid white;  <!--background-color:rgba(14, 2, 35, 0.9);--> <!--background-color: #341a79;-->
+			bg-color:#341a79;
+			<!--border-color: transparent;-->
+        }
+        th, td {
+            padding: 10px;
+        }
+        th {
+            text-align: left; color:#FFFFFF;
+        }
+		td{
+		  color:#FFFFFF;
+		}
+    </style>
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="dorne-load"></div>
+    </div>
+
+    <!-- ***** Search Form Area ***** -->
+    <div class="dorne-search-form d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="search-close-btn" id="closeBtn">
+                        <i class="pe-7s-close-circle" aria-hidden="true"></i>
+                    </div>
+                    <form action="#" method="get">
+                        <input type="search" name="caviarSearch" id="search" placeholder="Search Your Desire Destinations or Events">
+                        <input type="submit" class="d-none" value="submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header_area" id="header">
+        <div class="container-fluid h-100">
+            <div class="row h-100">
+                <div class="col-12 h-100">
+                    <nav class="h-100 navbar navbar-expand-lg">
+                        <a class="navbar-brand" href="/"><img src="static/img/core-img/bookdbicon3.png" alt=""></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dorneNav" aria-controls="dorneNav" aria-expanded="false" aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
+                        <!-- Nav -->
+                        <div class="collapse navbar-collapse" id="dorneNav">
+                            <ul class="navbar-nav mr-auto" id="dorneMenu">
+
+                            </ul>
+                            <!-- Search btn -->
+							<!-- commented by NIKHIL 1-NOV-21 -->
+                            <!--<div class="dorne-search-btn">
+                                <a id="search-btn" href="#"><i class="fa fa-search" aria-hidden="true"></i> Search</a>
+                            </div>-->
+                            <!-- Signin btn -->
+							<!-- commented by NIKHIL 1-NOV-21 -->
+                            <!--<div class="dorne-signin-btn">
+                                <a href="#">Sign in  or Register</a>
+                            </div>-->
+                            <!-- Add listings btn -->
+							<!-- commented by NIKHIL 1-NOV-21 -->
+                            <!--<div class="dorne-add-listings-btn">
+                                <a href="#" class="btn dorne-btn">+ Add Listings</a>
+                            </div>-->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <!-- ***** Welcome Area Start ***** -->
+    <section class="dorne-welcome-area2 bg-img bg-overlay" style="background-image: url(img/bg-img/hero-2.jpg); background-repeat: repeat-y;">
+        <div class="container h-100">
+            <div class="row h-100 align-items-start justify-content-center">
+                <div class="col-12 col-md-10">
+                    <div class="hero-content">
+                        <h2> <br> </h2>
+                        <!--<h4> </h4>-->
+                    </div>
+                    <!-- Hero Search Form -->
+                    <div class="hero-search-form">
+                        <!-- Tabs -->
+                        <div class="nav nav-tabs" id="heroTab" role="tablist">
+                            <a class="nav-item nav-link active" id="nav-places-tab" data-toggle="tab" href="#nav-places" role="tab" aria-controls="nav-places" aria-selected="true">Category</a>
+                            <a class="nav-item nav-link" id="nav-events-tab" data-toggle="tab" href="#nav-events" role="tab" aria-controls="nav-events" aria-selected="false">Author</a>
+							<a class="nav-item nav-link" id="nav-events-tab2" data-toggle="tab" href="#nav-events2" role="tab" aria-controls="nav-events2" aria-selected="false">Rating</a>
+							<a class="nav-item nav-link" id="nav-events-tab3" data-toggle="tab" href="#nav-events3" role="tab" aria-controls="nav-events3" aria-selected="false">Format</a>
+							<a class="nav-item nav-link" id="nav-events-tab4" data-toggle="tab" href="#nav-events4" role="tab" aria-controls="nav-events3" aria-selected="false">Analytics</a>
+                        </div>
+                        <!-- Tabs Content -->
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-places" role="tabpanel" aria-labelledby="nav-places-tab">
+                                <h6>What Category of books are you looking for?</h6>
+                                <form action="/search_categories" method="post">
+                                    <select name="Source" class="custom-select">
+                                        {% for j in joblist2 %}
+	                                   <OPTION value={{j[0]}}>{{j[1]}}</OPTION>
+										{% endfor %}
+                                    </select>
+                                    	<input button type="submit" class="btn dorne-btn" />
+                                </form>
+                            </div>
+                            <div class="tab-pane fade" id="nav-events" role="tabpanel" aria-labelledby="nav-events-tab">
+                                <h6>Which Author's books are you looking for?</h6>
+                                <form action="/search" method="post">
+                                    <select name="Source" class="custom-select">
+                                    {% for j in joblist1 %}
+	                                   <OPTION value={{j[0]}}>{{j[1]}}</OPTION>
+										{% endfor %}
+                                    </select>
+									<input button type="submit" class="btn dorne-btn" />
+                                </form>
+                            </div>
+							<div class="tab-pane fade" id="nav-events2" role="tabpanel" aria-labelledby="nav-events-tab2">
+                                <h6>Which Rating of books are you looking for?</h6>
+                                <form action="/search_ratings" method="post">
+                                    <select name="Source" class="custom-select">
+                                        <option selected>Rating Range</option>
+                                        <option value="1">0 - 1</option>
+                                        <option value="2">1 - 2</option>
+                                        <option value="3">2 - 3</option>
+										<option value="4">3 - 4</option>
+										<option value="5">4 - 5</option>
+                                    </select>
+                                    <!--<button type="submit" class="btn dorne-btn"><i class="fa fa-search pr-2" aria-hidden="true"></i> Search</button>-->
+									<input button type="submit" class="btn dorne-btn"/>
+                                </form>
+                            </div>
+							<div class="tab-pane fade" id="nav-events3" role="tabpanel" aria-labelledby="nav-events-tab3">
+                                <h6>Which Format of books are you looking for?</h6>
+                                <form action="/search_format" method="post">
+                                    <select name="Source" class="custom-select">
+                                    {% for j in joblist3 %}
+	                                   <OPTION value={{j[0]}}>{{j[1]}}</OPTION>
+										{% endfor %}
+                                    </select>
+                                    <!--<button type="submit" class="btn dorne-btn"><i class="fa fa-search pr-2" aria-hidden="true"></i> Search</button>-->
+									<input button type="submit" class="btn dorne-btn"/>
+                                </form>
+                            </div>
+							<div class="tab-pane fade" id="nav-events4" role="tabpanel" aria-labelledby="nav-events-tab4">
+                                <h6>Select any one parameter to see its Analytics.</h6>
+                                <form action="/search_analytics1" method="post">
+                                    <select name="Source" class="custom-select">
+                                        <option selected>Parameter</option>
+                                        <option value="1">Average Rating</option>
+                                        <option value="2">Bestsellers Rank</option>
+                                        <option value="3">Publication Date</option>
+										<option value="3">Format</option>
+										<option value="3">Language</option>
+                                    </select>
+                                    <!--<button type="submit" class="btn dorne-btn"><i class="fa fa-search pr-2" aria-hidden="true"></i> Submit</button>-->
+									<input button type="submit" class="btn dorne-btn" />
+                                </form>
+
+                            </div>
+							<br>
+							<br>
+							<table>
+								<tr>
+									<th>Book Title</th>
+									<th>Author</th>
+                                    <th>Best Sellers Rank</th>
+                                    <th>Language</th>
+									<th>Book Rating</th>
+									<th>Format</th>
+									<th>Image</th>
+								</tr>
+                                {% for BookTitle,Author,Rank,lang,BookRating,Format,Image in info %}
+                                <tr>
+									<td>{{BookTitle}}</td>
+									<td>{{Author}}</td>
+                                    <td>{{Rank}}</td>
+                                    <td>{{lang}}</td>
+									<td>{{BookRating}}</td>
+									<td>{{Format}}</td>
+									<td><img src={{Image}} style="width:100px;height:150px;"></td>
+								</tr>
+                                {% endfor %}
+
+							</table>
+							<br>
+							<br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+		<br>
+
+
+    </section>
+    <!-- ***** Welcome Area End ***** -->
+
+<!-- removed the featured section -->
+
+
+
+    <!-- ****** Footer Area Start ****** -->
+    <footer class="dorne-footer-area">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 d-md-flex align-items-center justify-content-between">
+                    <div class="footer-text">
+                        <p>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+CA-675 Cloud Technologies Assignment-2 by Group-17.
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </p>
+                    </div>
+<!--                    <div class="footer-social-btns">
+                        <a href="#"><i class="fa fa-linkedin" aria-haspopup="true"></i></a>
+                        <a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-twitter" aria-haspopup="true"></i></a>
+                        <a href="#"><i class="fa fa-facebook" aria-haspopup="true"></i></a>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ****** Footer Area End ****** -->
+
+    <!-- jQuery-2.2.4 js -->
+    <script src="static/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="static/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap-4 js -->
+    <script src="static/js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="static/js/others/plugins.js"></script>
+    <!-- Active JS -->
+    <script src="static/js/active.js"></script>
+</body>
+
+</html>

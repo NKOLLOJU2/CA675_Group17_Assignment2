@@ -1,0 +1,28 @@
+
+import pandas as pd
+import numpy as np
+cleaned_data= pd.read_csv('/Users/saidinesh.v/Documents/Cloud_Proj_Dataset/Cleaned_Data/dataset_cleaned.csv',delimiter=',')
+
+def getlist(series):
+    return list(series.split(","))
+book_authors = cleaned_data[['id','authors']]
+authors_list=book_authors['authors'].str.strip('[]').map(getlist).tolist()
+authors_list_np_array= np.array(authors_list,dtype=object)
+book_authors.iloc[:,1]=authors_list_np_array
+book_authors.explode('authors')
+book_authors.to_csv('book_authors.csv',header=True)
+
+book_category = cleaned_data[['id','category']]
+category_list=book_category['category'].str.strip('[]').map(getlist).tolist()
+category_list_np_array= np.array(category_list,dtype=object)
+book_ category.iloc[:,1]=category_list_np_array
+book_category.explode('category')
+book_category.to_csv('books_categories.csv',header=True)
+
+
+
+cleaned_data['publication_date_new']=pd.to_datetime(cleaned_data['publication-date'])
+books_data=cleaned_data.iloc[:,np.r_[2,4:9,10:14]]
+books_data.to_csv('books_authors.csv',header=True,index=False)
+
+

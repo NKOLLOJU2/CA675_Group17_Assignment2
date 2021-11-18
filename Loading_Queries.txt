@@ -1,0 +1,54 @@
+
+LOAD DATA LOCAL INFILE '/Users/saidinesh.v/Documents/Cloud_Proj_Dataset/Cleaned_Data/formats.csv' INTO TABLE BookStore.Formats
+FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' ESCAPED BY '\\' LINES TERMINATED BY '\n'  
+(@col1,@col2) 
+set 
+format_id=@col1,
+format_name=@col2;
+
+LOAD DATA LOCAL INFILE '/Users/saidinesh.v/Documents/Cloud_Proj_Dataset/Cleaned_Data/Authors.csv' INTO TABLE BookStore.Author
+FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' ESCAPED BY '\\' LINES TERMINATED BY '\n'  
+(@col1,@col2) 
+set 
+author_id=@col1,
+author_name=@col2;
+
+LOAD DATA LOCAL INFILE '/Users/saidinesh.v/Documents/Cloud_Proj_Dataset/Cleaned_Data/categories.csv' INTO TABLE BookStore.Categories
+FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' ESCAPED BY '\\' LINES TERMINATED BY '\n'  
+(@col1,@col2) 
+set 
+category_id=@col1,
+category_name=@col2;
+
+
+
+LOAD DATA LOCAL INFILE '/Users/saidinesh.v/Documents/Cloud_Proj_Dataset/Cleaned_Data/book_authors.csv' INTO TABLE Books
+FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' ESCAPED BY '\\' LINES TERMINATED BY '\n'  
+(@col1,@col2,@col3,@col4,@col5,@col6,@col7,@col8,@col9,@col10) 
+set 
+book_id=@col1,
+title=@col2,
+bestsellers_rank=@col3,
+lang=@col4,
+rating_avg=@col5,
+rating_count=@col6,
+description=@col7,
+format_id=@col8,
+publication_date=@col9,
+url=@col10;
+
+
+LOAD DATA LOCAL INFILE '/Users/saidinesh.v/Documents/Cloud_Proj_Dataset/Cleaned_Data/book_categories.csv' INTO TABLE BookStore.Book_Category
+FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' ESCAPED BY '\\' LINES TERMINATED BY '\n'  
+(@col1,@col2,@col3) 
+set 
+book_id=@col2,
+category_id=@col3;
+
+
+LOAD DATA LOCAL INFILE '/Users/saidinesh.v/Documents/Cloud_Proj_Dataset/Cleaned_Data/book_authors.csv' INTO TABLE Book_Author
+FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' ESCAPED BY '\\' LINES TERMINATED BY '\n'  
+(@col1,@col2,@col3) 
+set 
+book_id=@col2,
+author_id=@col3;
